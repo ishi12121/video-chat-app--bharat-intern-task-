@@ -1,7 +1,13 @@
 import * as store from './store.js';
 
+import * as wss from './wss.js';
+// initialization of socketIO connection
 const socket = io('/');
-socket.on('connect', () => {
-     console.log('succesfully connected to socket.io  server ');
-     store.setSocketId(socket.id);
+wss.registerSocketEvents(socket);
+
+// register event for personal code  copy button 
+const personalCodeCopyButton =  document.getElementById('personal_code_copy_button');
+personalCodeCopyButton.addEventListener('click', () => {
+    const personalCode =  store.getState().socketId;
+    navigator.clipboard && navigator.clipboard.writeText(personalCode);
 });
