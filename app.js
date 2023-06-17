@@ -2,6 +2,7 @@
 
 const express = require('express');
 const http = require("http");
+const { connect } = require('http2');
 const { Socket } = require('socket.io');
 
 const PORT = process.env.PORT || 3000;         //port path given 
@@ -18,15 +19,31 @@ app.get("/",(req,res) => {
 
 let connectedPeers = [];  // storing array of connected user in array
 io.on('connection', (socket) => {
-   connectedPeers.push(socket.id);
-   console.log(connectedPeers); 
-                                            
-                                           /* This code is setting up a Socket.IO connection and creating an array called `connectedPeers` to
-                                            store the IDs of connected users. When a user connects to the server, their socket ID is added to
-                                            the `connectedPeers` array and the array is logged to the console. When a user disconnects from the
-                                            server, their socket ID is removed from the `connectedPeers` array using the `filter()` method and
-                                            the updated array is logged to the console. */
+    connectedPeers.push(socket.id);
+    console.log(connectedPeers);
+                        
+ 
+    socket.on("pre-offer", (data) => {
+        console.log('pre-offer-came');
+        const { calleePersonalCode, callType } = data;
+         
+        const connectedPeer = connectedPeers.find((peerSocketId) => 
+            peerSocketId === calleePersonalCode
+        );
+        if (connectedPeer) {
+            const data = {
+                callerSocketID: socket.id,
+                callType,
+            };
+        
 
+            io.to(calleePersonalCode).emit("pre-offer", data);
+        
+        };
+    });
+    
+    
+    
    socket.on('disconnect', () => {
     console.log("user disconnected");
 
@@ -45,9 +62,3 @@ server.listen(PORT, () => {
 });
 
 
-/* This is a Node.js server-side code that creates a web server using the Express framework and
-Socket.IO library. It listens for incoming connections on a specified port (either the environment
-variable PORT or 3000 by default), serves static files from the "public" directory, and handles a
-GET request to the root URL ("/") by sending the "index.html" file. It also sets up a Socket.IO
-connection and logs a message when a user connects to the server. Finally, it starts the server and
-logs a message indicating the port it is listening on. */
