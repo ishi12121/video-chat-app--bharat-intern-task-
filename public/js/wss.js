@@ -5,11 +5,12 @@ import * as webRTCHandler from "./webRTCHandler.js";
 let socketIO = null;
 
 export const registerSocketEvents = (socket) => {
-    socket.on('connect', () => {
-        socketIO = socket;
-            console.log('succesfully connected to socket.io  server ');
-            store.setSocketId(socket.id);
-            ui.updatePersonalCode(socket.id);
+    socketIO = socket;
+  
+    socket.on("connect", () => {
+      console.log("succesfully connected to socket.io server");
+      store.setSocketId(socket.id);
+      ui.updatePersonalCode(socket.id);
     });
     
     socket.on("pre-offer", (data) => {
@@ -19,6 +20,7 @@ export const registerSocketEvents = (socket) => {
 };
 
 export const sendPreOffer = (data) => {
-    
+    console.log("emitting to server pre offer event");
+    socketIO.emit('pre-offer', data);
 
 };

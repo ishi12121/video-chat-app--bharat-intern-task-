@@ -1,8 +1,8 @@
 import * as store from './store.js';
-
 import * as wss from './wss.js';
 import * as webRTCHandler from "./webRTCHandler.js";
 import * as constants from './constants.js';
+
 // initialization of socketIO connection
 const socket = io('/');
 wss.registerSocketEvents(socket);

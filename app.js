@@ -26,10 +26,12 @@ io.on('connection', (socket) => {
     socket.on("pre-offer", (data) => {
         console.log('pre-offer-came');
         const { calleePersonalCode, callType } = data;
-         
+        console.log(calleePersonalCode);
+        console.log(connectedPeers);
         const connectedPeer = connectedPeers.find((peerSocketId) => 
             peerSocketId === calleePersonalCode
         );
+        console.log(connectedPeer);
         if (connectedPeer) {
             const data = {
                 callerSocketID: socket.id,
@@ -48,7 +50,7 @@ io.on('connection', (socket) => {
     console.log("user disconnected");
 
     const newConnectedPeers = connectedPeers.filter((peerSocketId) => {
-         peerSocketId !== socket.id;
+        peerSocketId !== socket.id;
     });
     connectedPeers = newConnectedPeers;
     console.log(connectedPeers);
