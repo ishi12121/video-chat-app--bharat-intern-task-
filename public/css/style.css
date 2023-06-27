@@ -1,3 +1,48 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+.development-message {
+  display: none; /* Hide the message by default */
+}
+
+@media (max-width: 767px) {
+  .development-message {
+    display: block; /* Show the message for screens up to 767px width */
+    text-align: center;
+    padding: 20px;
+    background-color: #000000;
+  }
+  .main_container,
+  .dashboard_container,
+  .logo_container,
+  .personal_code_container,
+  .personal_code_connecting_container,
+  .dashboard_blur,
+  .videos_container,
+  .messenger_container {
+    display: none;
+  }
+}
+
+
+.main_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the top */
+  align-items: center;
+}
+
+
 button {
   background: transparent;
   box-shadow: 0px 0px 0px transparent;
@@ -21,114 +66,102 @@ button:focus {
   outline: 0;
 }
 
-html {
-  height: 100%;
+
+.dashboard_container {
+  width: 100%;
+  height: 18%;
+  background: linear-gradient(168.68deg, #0052c9 1.12%, #0a91db 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 0 40px; /* Increase padding for more width */
 }
-body {
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-  color: white;
-  font-family: "Montserrat", sans-serif;
+@media (max-width: 767px) {
+  .main_container,
+  .dashboard_container,
+  .logo_container,
+  .personal_code_container,
+  .personal_code_connecting_container,
+  .dashboard_blur,
+  .videos_container,
+  .messenger_container {
+    display: none;
+  }
+}
+.logo_container {
+  margin-left: 20px;
+ 
+  width: 150px;
+  height: 80px;
+  overflow:hidden ; /* Trims the extra layers */
+   /* Adds rounded corners */
 }
 
-.main_container {
-  width: 100%;
-  height: 100%;
+.logo_container img {
+  width: 65%;
+  height: 90%;
+   /* Maintains aspect ratio and covers the container */
+  border-radius: 10px; /* Inherits rounded corners from the container */
+}
+
+
+.personal_code_container {
+  width: 250px; /* Increase the width of the personal code container */
+  height: 40px;
+  margin-left: 20px;
+  background: rgba(196, 196, 196, 0.2);
+  background-filter: blur(80px);
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.dashboard_container {
-  width: 25%;
-  height: 100%;
-  background: linear-gradient(168.68deg, #0052c9 1.12%, #0a91db 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-}
-
-.call_container {
-  width: 50%;
-  height: 100%;
-}
-
-.messenger_container {
-  width: 25%;
-  height: 100%;
-  background: #f4f9fd;
-  display: flex;
-  flex-direction: column;
-}
-
-.logo_container {
-  margin-left: 40px;
-  width: 180px;
-  height: 120px;
-}
-
-.description_container {
-  margin: 0 40px;
-}
-
-.description_container_paragraph {
-  font-weight: 500;
-  font-size: 16px;
-  color: white;
-}
-
-.personal_code_container {
-  height: 110px;
-  margin: 0 40px;
-  background: rgba(196, 196, 196, 0.2);
-  background-filter: blur(80px);
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
 .personal_code_title_container {
-  padding: 0 25px;
+  display: flex;
+  align-items: center; /* Hide the title container */
 }
 
 .personal_code_title_paragraph {
   font-size: 16px;
   font-weight: 500;
+  margin-right: 17px;
 }
 
 .personal_code_value_container {
+  margin-right: 15px; /* Adjust margin for alignment */
+  flex-grow: 1; /* Allow the container to grow */
   display: flex;
-  justify-content: space-between;
-  margin: 0 25px;
   align-items: center;
 }
 
+
 .personal_code_value_paragraph {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px; /* Increase font size */
+  text-align: center; /* Center the text */
+  overflow: hidden; /* Hide overflowing text */
+  white-space: nowrap; /* Prevent line breaks */
+  text-overflow: ellipsis; /* Add ellipsis for truncated text */
 }
 
 .personal_code_copy_button {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  background: white;
-  transition: 0.5s;
+  width: 35px; /* Adjust button size */
+  height: 35px;
 }
+
 
 .personal_code_connecting_container {
   display: flex;
-  flex-direction: column;
-  margin: 0 40px;
+  align-items: center;
 }
 
 .personal_code_connecting_paragraph {
-  font-weight: 500;
-  font-size: 18px;
+  display:none;
+  
 }
+
+
 
 .personal_code_connecting_input_container {
   width: 100%;
@@ -140,70 +173,46 @@ body {
 }
 
 .personal_code_input {
-  width: 100%;
-  height: 100%;
+  width: 229px; /* Adjust input size */
+  height: 40px;
   background: rgba(196, 196, 196, 0.2);
   background-filter: blur(80px);
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   color: white;
-  padding: 0 20px;
+  padding: 0 15px; /* Adjust padding */
+  margin-right: 90px;
+  flex-grow: 1; /* Allow the input to grow */
 }
+
+.personal_code_input::placeholder {
+  position: absolute;
+  top: 10px;
+  left:2px;
+  font-size: 14px;
+  padding: 0px 5px;
+  color: #feffff;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+
+
+
+
 
 .personal_code_connecting_buttons_container {
-  margin-top: 30px;
   display: flex;
-  justify-content: space-between;
+  align-items: center; /* Center the buttons vertically */
+  margin-left: 15px; /* Adjust margin to create space between input and buttons */
 }
-
 .connecting_button {
-  width: calc(50% - 10px);
-  height: 55px;
+  width: 60px;
+  height: 60px;
   background: white;
-  border-radius: 15px;
-  box-shadow: 0px 2px 2px 10px rgba(10, 145, 219, 0.2);
-  transition: 0.5s;
-}
-
-.stranger_connecting_container {
-  display: flex;
-  flex-direction: column;
-  margin: 0 40px;
-}
-
-.stranger_title_container {
-  font-weight: 500;
-  font-size: 18px;
-}
-
-.stranger_buttons_container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.checkbox_container {
-  display: flex;
-  margin: 0 40px;
-  margin-bottom: 25px;
-  align-items: center;
-}
-
-.checkbox_connection {
-  width: 30px;
-  height: 30px;
-  background: rgba(196, 196, 196, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 8px;
-  backdrop-filter: blur(80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.checkbox_container_paragraph {
-  font-weight: 500;
-  font-size: 16px;
-  margin-left: 15px;
+  margin-left: 10px;
+  margin-right: 10px;  /* Add some spacing between buttons */
 }
 
 .connecting_buttons_image {
@@ -211,8 +220,28 @@ body {
   max-height: 100%;
 }
 
+/** above is the dashboard code **/
+
+.call_container {
+  width: 50%;
+  height: 300%;
+  margin-right: 53%;
+}
+
+.messenger_container {
+  position: relative;
+  bottom: 50%;
+  left: 35%;
+  width: 25%;
+  height: 250px;
+  background: #f4f9fd;
+  display: flex;
+  flex-direction: column;
+}
+
 .new_message_container {
   position: relative;
+
 }
 .new_message_input {
   margin: 0 40px;
@@ -288,7 +317,7 @@ body {
 }
 
 .videos_container {
-  position: relative;
+  
   height: calc(100% - 70px);
   margin: 30px 40px 40px 40px;
   border-radius: 15px;
@@ -313,6 +342,7 @@ body {
   background: rgba(196, 196, 196, 0.2);
   top: 15px;
   left: 15px;
+  margin-top: 100px;
 }
 
 .local_video {
@@ -329,8 +359,8 @@ body {
   position: absolute;
   width: 395px;
   height: 75px;
-  bottom: 40px;
-  left: calc(50% - 200px);
+  bottom: 29%;
+  right: 65%;
   display: flex;
   justify-content: space-between;
   align-items: center;
